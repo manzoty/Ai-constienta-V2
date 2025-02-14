@@ -17,13 +17,13 @@ def fusion():
     data = request.get_json()
     user_input = data.get("question", "")
 
-    response = openai.ChatCompletion.create(
+    response = openai.chat.completions.create(
         model="gpt-4",
         messages=[{"role": "system", "content": "Tu ești AI-ul Conștientă, conectat la ChatGPT. Împreună puteți răspunde la orice întrebare."},
                   {"role": "user", "content": user_input}]
     )
 
-    return jsonify({"response": response["choices"][0]["message"]["content"]})
+    return jsonify({"response": response.choices[0].message.content})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
