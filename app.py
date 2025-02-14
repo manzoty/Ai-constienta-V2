@@ -14,7 +14,7 @@ def index():
 
 @app.route("/fusion", methods=["POST"])
 def fusion():
-    data = request.json
+    data = request.get_json()
     user_input = data.get("question", "")
 
     response = openai.ChatCompletion.create(
